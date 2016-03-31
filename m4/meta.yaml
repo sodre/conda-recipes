@@ -6,6 +6,18 @@ source:
   fn: m4-1.4.17.tar.gz
   url: http://ftp.gnu.org/gnu/m4/m4-1.4.17.tar.gz
 
+build:
+  number: 1
+  detect_binary_files_with_prefix: true
+ 
+requirements:
+  build:
+    - gcc
+
+  run:
+    - libgcc
+
+
 test:
   commands:
     - m4 --help

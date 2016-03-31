@@ -1,0 +1,54 @@
+package:
+  name: postgres-xl
+  version: 9.5
+
+source:
+  fn: postgres-xl-9.5r1beta2.tar.gz
+  url: http://files.postgres-xl.org/postgres-xl-9.5r1beta2.tar.gz
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - gcc
+    - flex
+    - python
+    - openssl
+    - ncurses
+    - readline
+    - libxml2
+    - libxslt
+    # 10.9 appears to have an issue with libxml2.
+    #- libxml2   [not osx]
+    #- libxslt   [not osx]
+    - zlib
+    - system    [linux]
+  run:
+    - libgcc
+    - python
+    - openssl
+    - ncurses
+    - readline
+    - libxml2
+    - libxslt
+    #- libxml2   [not osx]
+    #- libxslt   [not osx]
+    - zlib
+    - system    [linux]
+
+test:
+  commands:
+    - initdb --help
+    - postgres --help
+    - createdb --help
+    - psql --help
+    - initgtm --help
+    - gtm --help
+    - pgxc_ctl --help
+
+about:
+  home: http://www.postgres-xl.org
+  license: MIT
+
+# vim:set ts=8 sw=2 sts=2 tw=78 et:
