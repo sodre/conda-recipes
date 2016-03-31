@@ -5,9 +5,11 @@ package:
 source:
   fn: postgres-xl-9.5r1beta2.tar.gz
   url: http://files.postgres-xl.org/postgres-xl-9.5r1beta2.tar.gz
+  patches:
+    - prefer_ncurses_to_termcap.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -19,11 +21,7 @@ requirements:
     - readline
     - libxml2
     - libxslt
-    # 10.9 appears to have an issue with libxml2.
-    #- libxml2   [not osx]
-    #- libxslt   [not osx]
     - zlib
-    - system    [linux]
   run:
     - libgcc
     - python
@@ -32,15 +30,12 @@ requirements:
     - readline
     - libxml2
     - libxslt
-    #- libxml2   [not osx]
-    #- libxslt   [not osx]
     - zlib
-    - system    [linux]
 
 test:
   commands:
-    - initdb --help
     - postgres --help
+    - initdb --help
     - createdb --help
     - psql --help
     - initgtm --help
